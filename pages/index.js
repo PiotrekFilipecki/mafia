@@ -113,7 +113,7 @@ const handleSubmit = async (e) => {
       <main className="main">
         <Hero />
         <ParallaxText>Dołącz do mafii!</ParallaxText>
-        <div className="prizes">
+        <div id="nagrody" className="prizes">
           <h2 className="sectionHeader">Nagrody</h2>
           <p className="sectionClaim">subtitle</p>
           <div className="prizes-grid">
@@ -139,7 +139,7 @@ const handleSubmit = async (e) => {
             </div>
           </div>
         </div>
-        <div className="rules">
+        <div id="zasady" className="rules">
           <h2 className="sectionHeader">Zasady</h2>
           <p className="sectionClaim">subtitle</p>
           <div className="rules-grid">
@@ -166,36 +166,36 @@ const handleSubmit = async (e) => {
             </div>
           </div>
         </div>
-        <div className="formSection">
+        <div id="wez-udzial" className="formSection">
           <img src="/rekrr.png" alt="Rekrutacja" />
 
-          <div class="form-container">
+          <div className="form-container">
   <form>
-    <div class="form-group">
-      <input type="text" id="name" class="form-field" placeholder=" " required />
-      <label for="name" class="label-as-placeholder">IMIĘ</label>
+    <div className="form-group">
+      <input type="text" id="name" className="form-field" placeholder=" " required />
+      <label for="name" className="label-as-placeholder">IMIĘ</label>
     </div>
-    <div class="form-group">
-      <input type="email" id="email" class="form-field" placeholder=" " required />
-      <label for="email" class="label-as-placeholder">E-MAIL</label>
+    <div className="form-group">
+      <input type="email" id="email" className="form-field" placeholder=" " required />
+      <label for="email" className="label-as-placeholder">E-MAIL</label>
     </div>
-    <div class="form-group">
-      <input type="text" id="phone" class="form-field" placeholder=" " required />
-      <label for="phone" class="label-as-placeholder">TELEFON</label></div>
-    <div class="form-group">
-      <input type="text" id="code" class="form-field" placeholder=" " required />
-      <label for="code" class="label-as-placeholder">KOD ZAKUPU</label>
+    <div className="form-group">
+      <input type="text" id="phone" className="form-field" placeholder=" " required />
+      <label for="phone" className="label-as-placeholder">TELEFON</label></div>
+    <div className="form-group">
+      <input type="text" id="code" className="form-field" placeholder=" " required />
+      <label for="code" className="label-as-placeholder">KOD ZAKUPU</label>
     </div>
-    <div class="form-group">
-      <textarea id="message" class="form-field" placeholder=" " required></textarea>
-      <label for="message" class="label-as-placeholder">DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII?</label>
+    <div className="form-group">
+      <textarea id="message" className="form-field" placeholder=" " required></textarea>
+      <label for="message" className="label-as-placeholder">DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII?</label>
     </div>
-    <button type="submit" class="submit-button">Wyślij</button>
+    <button type="submit" className="submit-button">Wyślij</button>
   </form>
 </div>
 
         </div>
-        <div className="contact">
+        <div id="kontakt" className="contact">
         <h2 className="sectionHeader">Kontakt</h2>
 
   <p className="sectionClaim">ul. Pod Sikornikiem 27A</p>

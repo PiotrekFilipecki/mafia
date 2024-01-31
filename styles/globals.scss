@@ -6,6 +6,10 @@
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   max-width: 100vw;
@@ -13,10 +17,11 @@ body {
 }
 
 body {
-  background-image: url('../public/bg.jpg');
+  // background-image: url('../public/bg.jpg');
   background-color: #141414;
   background-size: cover;
   background-position: center center;
+  touch-action: pan-x, pan-y;
   // background-attachment: fixed;
 }
 
@@ -132,11 +137,15 @@ main {
 
 .hero {
   width: 100%;
-  //height: 100%;
   height: 100vh;
+  min-height: 100vh;
   background-image: url('../public/bg.jpg');
   background-size: cover;
   background-position: center center;
+
+  @media screen and (min-width:993px) {
+    height: 100vh;
+  }
 
   button {
     color: #ED1C25;
@@ -152,16 +161,28 @@ main {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: flex-end;
-    align-items: center ;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    @media screen and (min-width:993px) {
+      justify-content: flex-end;
+      align-items: center ;
+    }
 
     .maflogo {
       position: absolute;
       top: 17%;
-      left: calc(50% - 295px);
+      left: 70%;
       width: 100%;
-      max-width: 590px;
+      max-width: 190px;
       z-index: 1;
+
+      @media screen and (min-width:993px) {
+        top: 17%;
+        left: calc(50% - 295px);
+        width: 100%;
+        max-width: 590px;
+      }
     }
 
     &--friz {
@@ -169,16 +190,29 @@ main {
       bottom: 0;
       left: -15%;
       width: 100%;
-      max-width: 1200px;
+      max-width: 600px;
       z-index: 2;
+
+      @media screen and (min-width:993px) {
+        bottom: 0;
+        left: -15%;
+        width: 100%;
+        max-width: 1200px;
+      }
     }
 
     &--text {
-      width: 50%;
+      margin-top: 3rem;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+
+      @media screen and (min-width:993px) {
+        width: 50%;
+        margin-top: 0;
+      }
       img {
         width: 100%;
         z-index: 2;
@@ -212,7 +246,11 @@ main {
   display: flex;
   flex-wrap: nowrap;
   background-color: #ED1C25;
-  padding: 3rem 0;
+  padding: 2rem 0;
+
+  @media screen and (min-width:993px) {
+    padding: 3rem 0;
+  }
 }
 
 .parallax .scroller {
@@ -228,27 +266,41 @@ main {
 .parallax span {
   display: block;
   margin-right: 30px;
-  font-size: 8rem;
+  font-size: 4rem;
+
+  @media screen and (min-width:993px) {
+    font-size: 8rem;
+  }
 }
 
 .prizes {
   width: 100%;
 
   &-grid {
-    width: 70%;
+    width: 90%;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
 
+    @media screen and (min-width:993px) {
+      width: 70%;
+    }
+
     .prize {
-      width: 50%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 4rem;
-      height: 630px;
+      margin-bottom: 6rem;
+      
+
+      @media screen and (min-width:993px) {
+        height: 630px;
+        width: 50%;
+        margin-bottom: 4rem;
+      }
 
       h3 {
         color: #E60303;
@@ -263,7 +315,11 @@ main {
         font-size: 1.5rem;
         text-align: center;
         text-transform: uppercase;
-        margin-top: -2rem;
+        
+
+        @media screen and (min-width:993px) {
+          margin-top: -2rem;
+        }
       }
       img {
         width: 80%;
@@ -282,14 +338,21 @@ main {
     flex-wrap: wrap;
     justify-content: center;
 
+    
+
     .rule {
-      width: 33%;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
       margin-bottom: 4rem;
-      height: 630px;
+      
+
+      @media screen and (min-width:993px) {
+        height: 630px;
+        width: 33%;
+      }
 
       .number {
         display: block;
@@ -325,18 +388,30 @@ main {
   align-items: center;
   img {
     width: 100%;
-    max-width: 500px;
+    max-width: 300px;
+
+    @media screen and (min-width:993px) {
+      max-width: 500px;
+    }
   }
 }
 
 /* Styles for the form */
 .form-container {
- width: 60%;/* Adjust the width as necessary */
+ width: 100%;/* Adjust the width as necessary */
   margin: auto;
   color: white;
 
   padding: 20px;
-  font-family: 'Arial', sans-serif;
+  font-family: inherit;
+
+  @media screen and (min-width:993px) {
+    width: 80%;
+  }
+
+  @media screen and (min-width:1024px) {
+    width: 60%;
+  }
 
   textarea {
     min-height: 120px;
