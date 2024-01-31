@@ -29,7 +29,8 @@ export default function App({ Component, pageProps }) {
   font-family: ${inter.style.fontFamily};
 }
 button,
-.parallax span {
+.parallax span,
+.number {
   font-family: ${myFont.style.fontFamily}
 }
 

@@ -7,7 +7,7 @@ export default function Hero() {
             <img className='hero__content--friz' src='/friz.png' alt='Żabka' />
             <img className='maflogo' src='/mafia_stamp.png' alt='Żabka' />
             <div className='hero__content--text'>
-                <img src="/produkty.png" alt="Produkty" />
+                <img src="/slider_r.png" alt="Produkty" />
                 <button>Dołącz do Mafii!</button>
             </div>
         </div>

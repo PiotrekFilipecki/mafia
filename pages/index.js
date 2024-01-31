@@ -105,6 +105,9 @@ const handleSubmit = async (e) => {
             <a href="#wez-udzial">Weź udział</a>
             <a href="#kontakt">Kontakt</a>
             <a className="termslink" href="/regulamin.pdf" target="_blank">Regulamin</a>
+            <a className="termslink" href="/regulamin.pdf" target="_blank">
+              <img src="instagram.svg" alt="Instagram" />
+            </a>
           </nav>
         </header>
       <main className="main">
@@ -116,22 +119,22 @@ const handleSubmit = async (e) => {
           <div className="prizes-grid">
             <div className="prize">
               <img src="/gold_1g.png" alt="Nagroda" />
-              <h3 className="prizeHeader">10 x</h3>
+              <h3 className="prizeHeader">10 <span>x</span></h3>
               <p className="prizeClaim">Sztabka złota 1g</p>
             </div>
             <div className="prize">
             <img src="/gold_3g.png" alt="Nagroda" />
-              <h3 className="prizeHeader">3 x</h3>
+              <h3 className="prizeHeader">3 <span>x</span></h3>
               <p className="prizeClaim">Sztabka złota 3g</p>
             </div>
             <div className="prize">
             <img src="/gold_10g.png" alt="Nagroda" />
-              <h3 className="prizeHeader">2 x</h3>
+              <h3 className="prizeHeader">2 <span>x</span></h3>
               <p className="prizeClaim">Sztabka złota 10g</p>
             </div>
             <div className="prize">
             <img src="/ticket.png" alt="Nagroda" />
-              <h3 className="prizeHeader">2 x</h3>
+              <h3 className="prizeHeader">2 <span>x</span></h3>
               <p className="prizeClaim">Udział na planie zdjęciowym Mafia IRL</p>
             </div>
           </div>
@@ -139,6 +142,29 @@ const handleSubmit = async (e) => {
         <div className="rules">
           <h2 className="sectionHeader">Zasady</h2>
           <p className="sectionClaim">subtitle</p>
+          <div className="rules-grid">
+            <div className="rule">
+              <img src="/produkty.png" alt="Zasada" />
+              <span className='number'>01</span>
+              <p className="ruleClaim">
+              KUP 2 DOWOLNE PRODUKTY RUSH / noRUSH W ŻABCE
+              </p>
+            </div>
+            <div className="rule">
+              <img src="/rekrut.png" alt="Zasada" />
+              <span className='number'>02</span>
+              <p className="ruleClaim">
+              ZESKANUJ APLIKACJĘ ŻAPPKA<br/><span>PODCZAS ZAKUPU I ODBIERZ KOD, KTÓRY POJAWI SIĘ W APLIKACJI</span>
+              </p>
+            </div>
+            <div className="rule">
+              <img src="/rekrut.png" alt="Zasada" />
+              <span className='number'>03</span>
+              <p className="ruleClaim">
+              ZAREJESTRUJ (WPISZ) KOD I ODPOWIEDZ NA PYTANIE <br/><span>DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII?</span>
+              </p>
+            </div>
+          </div>
         </div>
         <div className="formSection">
           <img src="/rekrr.png" alt="Rekrutacja" />
@@ -162,20 +188,23 @@ const handleSubmit = async (e) => {
     </div>
     <div class="form-group">
       <textarea id="message" class="form-field" placeholder=" " required></textarea>
-      <label for="message" class="label-as-placeholder">WIADOMOŚĆ</label>
+      <label for="message" class="label-as-placeholder">DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII?</label>
     </div>
     <button type="submit" class="submit-button">Wyślij</button>
   </form>
 </div>
 
         </div>
-        {/* <div className="contact">
+        <div className="contact">
         <h2 className="sectionHeader">Kontakt</h2>
 
   <p className="sectionClaim">ul. Pod Sikornikiem 27A</p>
   <p className="sectionClaim">30-216 Kraków</p>
   <a className="sectionClaim" href="mailto:hello@theessa.pl">hello@theessa.pl</a>
-          </div> */}
+  <img className='essalogo' src='/esslogo.svg' alt='The Essa' />
+  <p className="sectionClaim">© 2024 · THE ESSA CO</p>
+  <img className='footerStamp' src="/mafia_stamp.png" alt="Mafia" />
+          </div>
       </main>
     </>
   );

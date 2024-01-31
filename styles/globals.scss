@@ -14,9 +14,10 @@ body {
 
 body {
   background-image: url('../public/bg.jpg');
+  background-color: #141414;
   background-size: cover;
   background-position: center center;
-  background-attachment: fixed;
+  // background-attachment: fixed;
 }
 
 a {
@@ -35,7 +36,7 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  z-index: 10;
+  z-index: 20;
   font-family: var(--font-inter);
   font-weight: 400;
 
@@ -50,10 +51,15 @@ header {
 
       a {
           text-decoration: none;
+          text-transform: uppercase;
           color: white;
           margin-right: 1rem;
           font-family: var(--font-inter);
           font-weight: 400;
+
+          img {
+            width: 22px;
+          }
 
           &:last-of-type {
               margin-right: 0;
@@ -128,6 +134,9 @@ main {
   width: 100%;
   //height: 100%;
   height: 100vh;
+  background-image: url('../public/bg.jpg');
+  background-size: cover;
+  background-position: center center;
 
   button {
     color: #ED1C25;
@@ -152,7 +161,7 @@ main {
       left: calc(50% - 295px);
       width: 100%;
       max-width: 590px;
-      z-index: -1;
+      z-index: 1;
     }
 
     &--friz {
@@ -161,6 +170,7 @@ main {
       left: -15%;
       width: 100%;
       max-width: 1200px;
+      z-index: 2;
     }
 
     &--text {
@@ -171,7 +181,7 @@ main {
       align-items: center;
       img {
         width: 100%;
-        
+        z-index: 2;
       }
     }
   }
@@ -242,8 +252,10 @@ main {
 
       h3 {
         color: #E60303;
-        font-size: 3.5rem;
-        
+        font-size: 5rem;
+        span {
+          font-size: 3rem;
+        }
       }
 
       p {
@@ -259,6 +271,52 @@ main {
     }
   }
 }
+
+.rules {
+  width: 100%;
+  
+  &-grid {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .rule {
+      width: 33%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      margin-bottom: 4rem;
+      height: 630px;
+
+      .number {
+        display: block;
+        color: #E60303;
+        font-size: 7rem;
+      }
+    }
+
+
+      p {
+        color: #F0F0F0;
+        font-size: 1.25rem;
+        text-align: center;
+        text-transform: uppercase;
+        width: 70%;
+        span {
+          font-size: 1rem;
+          color: #E60303;
+        }
+      
+      }
+      img {
+        width: 80%;
+      }
+    }
+  }
+
 
 .formSection {
   display: flex;
@@ -279,6 +337,11 @@ main {
 
   padding: 20px;
   font-family: 'Arial', sans-serif;
+
+  textarea {
+    min-height: 120px;
+    resize: none;
+  }
 }
 
 .form-field {
@@ -345,3 +408,33 @@ main {
 }
 
 /* You may need additional JavaScript to handle the label transition on input focus if not using placeholder-shown */
+
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+
+  .sectionHeader {
+    margin-bottom: 4rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  a {
+    text-decoration: underline;
+    text-transform: lowercase;
+  }
+
+  .essalogo {
+    margin: 4rem 0;
+  }
+
+  .footerStamp {
+    display: block;
+    transform: translateY(5rem);
+  }
+}
