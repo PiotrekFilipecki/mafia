@@ -115,7 +115,7 @@ const handleSubmit = async (e) => {
         <ParallaxText>Dołącz do mafii!</ParallaxText>
         <div id="nagrody" className="prizes">
           <h2 className="sectionHeader">Nagrody</h2>
-          <p className="sectionClaim">subtitle</p>
+          {/* <p className="sectionClaim">subtitle</p> */}
           <div className="prizes-grid">
             <div className="prize">
               <img src="/gold_1g.png" alt="Nagroda" />
@@ -141,7 +141,7 @@ const handleSubmit = async (e) => {
         </div>
         <div id="zasady" className="rules">
           <h2 className="sectionHeader">Zasady</h2>
-          <p className="sectionClaim">subtitle</p>
+          {/* <p className="sectionClaim">subtitle</p> */}
           <div className="rules-grid">
             <div className="rule">
               <img src="/produkty.png" alt="Zasada" />
@@ -151,7 +151,7 @@ const handleSubmit = async (e) => {
               </p>
             </div>
             <div className="rule">
-              <img src="/rekrut.png" alt="Zasada" />
+              <img src="/zaapka.png" alt="Zasada" />
               <span className='number'>02</span>
               <p className="ruleClaim">
               ZESKANUJ APLIKACJĘ ŻAPPKA<br/><span>PODCZAS ZAKUPU I ODBIERZ KOD, KTÓRY POJAWI SIĘ W APLIKACJI</span>
