@@ -161,7 +161,7 @@ const handleSubmit = async (e) => {
               <img src="/rekrut.png" alt="Zasada" />
               <span className='number'>03</span>
               <p className="ruleClaim">
-              ZAREJESTRUJ (WPISZ) KOD I ODPOWIEDZ NA PYTANIE <br/><span>DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII?</span>
+              ZAREJESTRUJ (WPISZ) KOD I ODPOWIEDZ NA PYTANIE <br/><span>DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII IRL?</span>
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ const handleSubmit = async (e) => {
     </div>
     <div className="form-group">
       <textarea id="message" className="form-field" placeholder=" " required></textarea>
-      <label for="message" className="label-as-placeholder">DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII?</label>
+      <label for="message" className="label-as-placeholder">DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII IRL?</label>
     </div>
     <button type="submit" className="submit-button">Wyślij</button>
   </form>
