@@ -22,7 +22,71 @@ body {
   background-size: cover;
   background-position: center center;
   touch-action: pan-x, pan-y;
+  
+
+  &.hideoverflow {
+    overflow: hidden;
+
+    header {
+      opacity: 0;
+    
+    }
+  }
   // background-attachment: fixed;
+}
+
+.confirmSlide {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,1);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  transition: all 0.5s ease;
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+
+  &.show {
+    opacity: 1;
+    transform: translateY(0%);
+    pointer-events: all;
+  }
+
+  .maflogoconfirm {
+    width: 100%;
+    max-width: 300px;
+    transition: all 0.5s ease;
+    transition-delay: 1s;
+    opacity: 0;
+
+    &.logoslideconfirm {
+      opacity: 1;
+    }
+  }
+
+  .confirmtext {
+    margin-top: 2rem;
+    color:#ED1C25;
+    font-size: 2rem;
+    text-align: center;
+    transition: all 0.5s ease;
+    transition-delay: 1.25s;
+    opacity: 0;
+    transform: translateY(2rem);
+    
+    &.showconfirmtext {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+
 }
 
 a {
@@ -44,6 +108,8 @@ header {
   z-index: 20;
   font-family: var(--font-inter);
   font-weight: 400;
+  transition: all 0.5s ease;
+  opacity: 1;
 
   img {
       width: 80px;
@@ -142,6 +208,29 @@ main {
   background-image: url('../public/bg.jpg');
   background-size: cover;
   background-position: center center;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    transition: all 1s ease;
+    background: rgb(0,0,0);
+    opacity: 1;
+    z-index: 20;
+  }
+
+  &.hideCover {
+    &::before {
+      // background: transparent;
+      z-index: -1;
+      opacity: 0;
+    }
+  }
 
   @media screen and (min-width:993px) {
     height: 100vh;
@@ -175,7 +264,17 @@ main {
       left: 70%;
       width: 100%;
       max-width: 190px;
-      z-index: 1;
+      z-index: 21;
+      transition: all 0.5s cubic-bezier(0.25,0.1,0.25,1);
+      transform: translateY(150%);
+
+      &.logoslide {
+        transform: translateY(0%);
+      }
+
+      &.logoIndex {
+        z-index: 1;
+      }
 
       @media screen and (min-width:993px) {
         top: 17%;
@@ -192,6 +291,14 @@ main {
       width: 100%;
       max-width: 600px;
       z-index: 2;
+      transition: all 1.25s ease;
+      transform: translateX(-150%);
+      opacity: 0;
+
+      &.frizslide {
+        transform: translatex(0%);
+        opacity: 1;
+      }
 
       @media screen and (min-width:993px) {
         bottom: 0;
@@ -208,6 +315,16 @@ main {
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      transition: all 0.8s ease;
+      transition-delay: 1s;
+      opacity: 0;
+      transform: translateY(1.5%);
+      z-index: 2;
+
+      &.textslide {
+        opacity: 1;
+        transform: translateY(0%);
+      }
 
       @media screen and (min-width:993px) {
         width: 50%;
@@ -480,6 +597,27 @@ main {
   cursor: pointer;
   margin: 0 auto;
   display: block;
+}
+
+.submit {
+  display: block;
+  margin: 1rem auto;
+  color: #ED1C25;
+    font-size: 4rem;
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.35s ease;
+
+    &:hover {
+      color: #F0F0F0;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
 }
 
 /* You may need additional JavaScript to handle the label transition on input focus if not using placeholder-shown */

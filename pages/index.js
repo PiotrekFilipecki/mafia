@@ -27,6 +27,7 @@ export default function Home() {
 
   const [imagePreviewUrl, setImagePreviewUrl] = useState();
   const [showForm, setShowForm] = useState(false)
+  const [showConfirm, setShowConfirm] = useState(false)
 
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
@@ -39,6 +40,14 @@ useEffect(() => {
     } else {
         setIsSubmitDisabled(true);
     }
+}, [isChecked]);
+
+useEffect(() => {
+  if (isChecked) {
+      setIsSubmitDisabled(false);
+  } else {
+      setIsSubmitDisabled(true);
+  }
 }, [isChecked]);
 
 const handleSubmit = async (e) => {
@@ -60,27 +69,28 @@ const handleSubmit = async (e) => {
 
 
   
-  // const response = await fetch('/api/submissions', {
-  //   method: 'POST',
-  //   body: JSON.stringify(payload),
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   }
-  // });
+  const response = await fetch('/api/submissions', {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
 
-  // if (response.ok) {
-  //   // router.push('/thankyou');
-  //   document.querySelector('.formheader').classList.add("formheaderhide")
-  //   setMessage(true)
-  //   document.body.classList.add("hideoverflow")
-  //   setFormProcessing(false);
+  if (response.ok) {
+    // router.push('/thankyou');
+
+    setMessage(true)
+    document.body.classList.add("hideoverflow")
+    setFormProcessing(false);
+    setShowConfirm(true)
     
     
-  // } else {
-  //   const payload = await response.json();
-  //   setFormProcessing(false);
-  //   setError(payload.error?.details[0]?.message);
-  // }
+  } else {
+    const payload = await response.json();
+    setFormProcessing(false);
+    setError(payload.error?.details[0]?.message);
+  }
 };
 
   return (
@@ -170,27 +180,59 @@ const handleSubmit = async (e) => {
           <img src="/rekrr.png" alt="Rekrutacja" />
 
           <div className="form-container">
-  <form>
+            <div className={showConfirm ? 'confirmSlide show': 'confirmSlide'}>
+            <img 
+              className={`maflogoconfirm ${showConfirm ? 'logoslideconfirm' : ''}`} 
+              src='/mafia_stamp.png' alt='Żabka' />
+              <h2
+              className={`confirmtext ${showConfirm ? 'showconfirmtext' : ''}`} 
+              >Twoje zgłoszenie zostało przyjęte</h2>
+            </div>
+  <form className="form" ref={offerForm} onSubmit={handleSubmit}>
     <div className="form-group">
-      <input type="text" id="name" className="form-field" placeholder=" " required />
-      <label for="name" className="label-as-placeholder">IMIĘ</label>
+      <input type="text" id="name" name="name" className="form-field" placeholder=" " required />
+      <label htmlFor="firstName" className="label-as-placeholder">IMIĘ</label>
     </div>
     <div className="form-group">
-      <input type="email" id="email" className="form-field" placeholder=" " required />
-      <label for="email" className="label-as-placeholder">E-MAIL</label>
+      <input type="email" id="email" name="email" className="form-field" placeholder=" " required />
+      <label htmlFor="email" className="label-as-placeholder">E-MAIL</label>
     </div>
     <div className="form-group">
-      <input type="text" id="phone" className="form-field" placeholder=" " required />
-      <label for="phone" className="label-as-placeholder">TELEFON</label></div>
+      <input type="text" id="phone" name="phone" className="form-field" placeholder=" " required />
+      <label htmlFor="phone" className="label-as-placeholder">TELEFON</label></div>
     <div className="form-group">
-      <input type="text" id="code" className="form-field" placeholder=" " required />
-      <label for="code" className="label-as-placeholder">KOD ZAKUPU</label>
+      <input type="text" id="code" name="code" className="form-field" placeholder=" " required />
+      <label htmlFor="code" className="label-as-placeholder">KOD ZAKUPU</label>
     </div>
     <div className="form-group">
-      <textarea id="message" className="form-field" placeholder=" " required></textarea>
-      <label for="message" className="label-as-placeholder">DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII IRL?</label>
+      <textarea id="message" name="message" className="form-field" placeholder=" " required></textarea>
+      <label htmlFor="message" name="message" className="label-as-placeholder">DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII IRL?</label>
     </div>
-    <button type="submit" className="submit-button">Wyślij</button>
+    <div className="fieldWrapper">
+                <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                />
+                <label className="terms"> Akceptuję <a href="/regulamin.pdf" target="_blank">regulamin</a> i wyrażam zgodę na przetwarzanie moich danych.</label>
+            </div>
+
+<div className="fieldWrapper">
+  <button
+    // disabled={formProcessing}
+    disabled={isSubmitDisabled}
+    className="submit sendform">
+
+    {formProcessing ? <span className="loading">Wysyłam</span> : <span>Dołącz do Mafii!</span>}
+  </button>
+  {error && (
+    <div className="errorWrapper">
+      <span className="errorWrapper-inner">
+        Offer not added: {error}
+      </span>
+    </div>
+  )}
+</div>
   </form>
 </div>
 

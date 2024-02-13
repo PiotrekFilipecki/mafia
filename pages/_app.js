@@ -30,6 +30,7 @@ export default function App({ Component, pageProps }) {
 }
 button,
 .parallax span,
+.confirmSlide,
 .number {
   font-family: ${myFont.style.fontFamily}
 }
