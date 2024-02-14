@@ -6,6 +6,7 @@ import styles from "@/styles/Home.module.scss";
 import SmoothScroll from "@/components/ScrollContainer";
 import Hero from "@/components/Hero";
 import { ParallaxText } from "@/components/ParallaxText";
+import CookiePolicyBox from '@/components/CookiePolicy';
 
 
 const inter = Source_Code_Pro({
@@ -60,6 +61,7 @@ const [checkLoading, setCheckLoading] = useState(false)
 const [validCode, setValidCode] = useState(false)
 const [invalidCode, setInvalidCode] = useState(false)
 const [codeMessage, setCodeMessage] = useState(false)
+const [showCookieBox, setShowCookieBox] = useState(false);
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
 };
@@ -79,17 +81,15 @@ useEffect(() => {
     }
 }, [isChecked]);
 
+
+
+
+
 useEffect(() => {
-  if (isChecked) {
-      setIsSubmitDisabled(false);
-  } else {
-      setIsSubmitDisabled(true);
+  const cookieConsent = localStorage.getItem('cookieConsent');
+  if (cookieConsent === null) {
+    setShowCookieBox(true);
   }
-}, [isChecked]);
-
-
-
-useEffect(() => {
   fetch('/api/check')
     .then((res) => res.json())
     .then((data) => {
@@ -187,6 +187,17 @@ const handleSubmit = async (e) => {
   }
 };
 
+const handleAccept = () => {
+  localStorage.setItem('cookieConsent', 'accepted');
+  setShowCookieBox(false);
+};
+
+const handleDecline = () => {
+  localStorage.setItem('cookieConsent', 'declined');
+  setShowCookieBox(false);
+  // You might want to handle the decline differently, e.g., redirecting the user or disabling certain features.
+};
+
   return (
     <>
       <Head>
@@ -215,6 +226,8 @@ const handleSubmit = async (e) => {
           </nav>
         </header>
       <main className="main">
+      {showCookieBox && <CookiePolicyBox onAccept={handleAccept} onDecline={handleDecline} />}
+
         <Hero />
         <ParallaxText>Dołącz do mafii!</ParallaxText>
 
