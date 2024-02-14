@@ -7,12 +7,36 @@ import SmoothScroll from "@/components/ScrollContainer";
 import Hero from "@/components/Hero";
 import { ParallaxText } from "@/components/ParallaxText";
 
+
 const inter = Source_Code_Pro({
   subsets: ['latin'],
   weights: [400, 700],
   variable: '--font-inter',
   display: 'swap',
 });
+
+function Profile() {
+  const [data, setData] = useState(null)
+  const [isLoading, setLoading] = useState(true)
+ 
+  useEffect(() => {
+    fetch('/api/check')
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data)
+        setLoading(false)
+      })
+  }, [])
+ 
+  if (isLoading) return <p>Loading...</p>
+  if (!data) return <p>No profile data</p>
+ 
+  return (
+    <div>
+      {console.log(data)}
+    </div>
+  )
+}
 
 export default function Home() {
   const offerForm = useRef();
@@ -27,11 +51,24 @@ export default function Home() {
 
   const [imagePreviewUrl, setImagePreviewUrl] = useState();
   const [showForm, setShowForm] = useState(false)
-  const [showConfirm, setShowConfirm] = useState(false)
-
+  const [showConfirm, setShowConfirm] = useState(false);
+  const [codeValue, setCodeValue] = useState('');
+  const [codesData, setCodesData] = useState();
+  const [data, setData] = useState(null)
+const [isLoading, setLoading] = useState(true)
+const [checkLoading, setCheckLoading] = useState(false)
+const [validCode, setValidCode] = useState(false)
+const [invalidCode, setInvalidCode] = useState(false)
+const [codeMessage, setCodeMessage] = useState(false)
   const handleCheckboxChange = (event) => {
     setIsChecked(event.target.checked);
 };
+
+// const handleCodeChange = (event) => {
+//   // setCodeValue(event.target.value);
+//   console.log(codeValue)
+//   // console.log(codesData.find((item) => item.codes === event.target.value))
+// };
 
 // Validate checkbox on state change
 useEffect(() => {
@@ -49,6 +86,63 @@ useEffect(() => {
       setIsSubmitDisabled(true);
   }
 }, [isChecked]);
+
+
+
+useEffect(() => {
+  fetch('/api/check')
+    .then((res) => res.json())
+    .then((data) => {
+      setData(data)
+      setLoading(false)
+    })
+}, [])
+
+// useEffect(() => {
+//   {data && data.find((item) => {
+//     if (codeValue === item.codes) {
+//       console.log(item.codes)
+
+     
+//     } else {
+//       console.log('nope')
+//       setCodeValue('')
+//     }
+//   })}
+// }, [codeValue])
+
+useEffect(() => {
+  
+  if (data) {
+    const foundItem = data.find((item) => codeValue === item.codes);
+    if (foundItem) {
+      console.log(foundItem.codes);
+      setCodeMessage(true)
+      setTimeout(() => {
+        setCodeMessage(false)
+        setValidCode(true);
+        setInvalidCode(false);
+
+        setTimeout(() => {
+          setCheckLoading(false)
+        }, 2000)
+      }, 3000);
+    } else {
+      console.log('nope');
+      setTimeout(() => {
+        setCodeMessage(false)
+        setValidCode(false);
+        setInvalidCode(true);
+        setTimeout(() => {
+          setCheckLoading(false)
+        }, 2000)
+      }, 3000);
+      if (codeValue !== '') {
+        setCodeValue('');
+      }
+    }
+  }
+}, [codeValue, data]);
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -89,7 +183,7 @@ const handleSubmit = async (e) => {
   } else {
     const payload = await response.json();
     setFormProcessing(false);
-    setError(payload.error?.details[0]?.message);
+    // setError(payload.error?.details[0]?.message);
   }
 };
 
@@ -123,6 +217,7 @@ const handleSubmit = async (e) => {
       <main className="main">
         <Hero />
         <ParallaxText>Dołącz do mafii!</ParallaxText>
+
         <div id="nagrody" className="prizes">
           <h2 className="sectionHeader">Nagrody</h2>
           {/* <p className="sectionClaim">subtitle</p> */}
@@ -180,6 +275,14 @@ const handleSubmit = async (e) => {
           <img src="/rekrr.png" alt="Rekrutacja" />
 
           <div className="form-container">
+            <div className={checkLoading ? 'codechecker codechecking': 'codechecker'}>
+              <p>{codeMessage ? 'Sprawdzam kod...': ''}
+              {validCode && !invalidCode && !codeMessage ? 'Kod prawidłowy' : ''}
+              {invalidCode && !validCode && !codeMessage ? 'Kod nieprawidłowy' : ''}</p>
+              <p>{invalidCode && !validCode && !codeMessage ? 'Spróbuj ponownie' : ''}</p>
+
+           
+            </div>
             <div className={showConfirm ? 'confirmSlide show': 'confirmSlide'}>
             <img 
               className={`maflogoconfirm ${showConfirm ? 'logoslideconfirm' : ''}`} 
@@ -201,7 +304,23 @@ const handleSubmit = async (e) => {
       <input type="text" id="phone" name="phone" className="form-field" placeholder=" " required />
       <label htmlFor="phone" className="label-as-placeholder">TELEFON</label></div>
     <div className="form-group">
-      <input type="text" id="code" name="code" className="form-field" placeholder=" " required />
+      <input 
+      onChange={e => {
+        
+        
+        if (e.target.value.length === 8) {
+          
+       
+          setCheckLoading(true)
+          setCodeMessage(true)
+          setCodeValue(e.target.value)
+
+
+          
+         
+        }
+      }}
+      type="text" id="code" name="code" className="form-field" placeholder=" " required />
       <label htmlFor="code" className="label-as-placeholder">KOD ZAKUPU</label>
     </div>
     <div className="form-group">

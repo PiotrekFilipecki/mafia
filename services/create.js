@@ -6,7 +6,7 @@ const schema = Joi.object({
   email: Joi.string().email().required(),
   message: Joi.string().required(),
   phone: Joi.string().required(),
-  code: Joi.string().required(),
+  code: Joi.string().max(8).required(),
 });
 
 const create = async (payload) => {
