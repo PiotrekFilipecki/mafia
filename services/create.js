@@ -4,6 +4,7 @@ import Joi from 'joi';
 const schema = Joi.object({
   firstName: Joi.string().required(),
   email: Joi.string().email().required(),
+  age: Joi.string().required(),
   message: Joi.string().required(),
   phone: Joi.string().required(),
   code: Joi.string().max(8).required(),

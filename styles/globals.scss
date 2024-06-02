@@ -242,7 +242,7 @@ main {
     background: transparent;
     border: none;
     outline: none;
-    margin-top: -4rem;
+    // margin-top: -4rem;
   }
 
   &__content {
@@ -294,6 +294,7 @@ main {
       transition: all 1.25s ease;
       transform: translateX(-150%);
       opacity: 0;
+      display: none;
 
       &.frizslide {
         transform: translatex(0%);
@@ -333,6 +334,13 @@ main {
       img {
         width: 100%;
         z-index: 2;
+        max-width: 130px;
+
+        @media screen and (min-width:993px) {
+          width: 50%;
+          margin-top: 0;
+          max-width: 180px;
+        }
       }
     }
   }

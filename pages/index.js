@@ -62,9 +62,12 @@ const [validCode, setValidCode] = useState(false)
 const [invalidCode, setInvalidCode] = useState(false)
 const [codeMessage, setCodeMessage] = useState(false)
 const [showCookieBox, setShowCookieBox] = useState(false);
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
-};
+const [birthDate, setBirthDate] = useState('');
+const [isAgeValid, setIsAgeValid] = useState(true);
+const [ageAlert, setAgeAlert] = useState(false);
+//   const handleCheckboxChange = (event) => {
+//     setIsChecked(event.target.checked);
+// };
 
 // const handleCodeChange = (event) => {
 //   // setCodeValue(event.target.value);
@@ -80,6 +83,8 @@ useEffect(() => {
         setIsSubmitDisabled(true);
     }
 }, [isChecked]);
+
+
 
 
 
@@ -144,6 +149,40 @@ useEffect(() => {
   }
 }, [codeValue, data]);
 
+const handleCheckboxChange = () => {
+  setIsChecked(!isChecked);
+  setIsSubmitDisabled(!isChecked || !isAgeValid);
+};
+
+const handleDateChange = (e) => {
+  const date = new Date(e.target.value);
+  const today = new Date();
+  let age = today.getFullYear() - date.getFullYear();
+  const monthDifference = today.getMonth() - date.getMonth();
+
+  console.log('aggeee', age)
+
+  if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < date.getDate())) {
+    age--;
+  }
+
+  if (age < 16) {
+    setIsAgeValid(false);
+    setError('You must be at least 16 years old.');
+    // alert('You must be at least 16 years old.');
+    setAgeAlert(true)
+    setTimeout(() => {
+      setAgeAlert(false)
+    }, 2500) 
+  } else {
+    setIsAgeValid(true);
+    setError(null);
+  }
+
+  setBirthDate(e.target.value);
+  setIsSubmitDisabled(!isChecked || !isAgeValid);
+};
+
 const handleSubmit = async (e) => {
   e.preventDefault();
   if (formProcessing) return;
@@ -153,6 +192,7 @@ const handleSubmit = async (e) => {
   const payload = {
     firstName: form.get('name'),
     email: form.get('email'),
+    age: form.get('age'),
     message: form.get('message'),
     phone: form.get('phone'),
     code: form.get('code'),
@@ -279,12 +319,116 @@ const handleDecline = () => {
               <img src="/rekrut.png" alt="Zasada" />
               <span className='number'>03</span>
               <p className="ruleClaim">
-              ZAREJESTRUJ (WPISZ) KOD I ODPOWIEDZ NA PYTANIE <br/><span>DLACZEGO CHCESZ DOŁĄCZYĆ DO MAFII IRL?</span>
+              ZAREJESTRUJ (WPISZ) KOD I ODPOWIEDZ NA PYTANIE <br/><span>Kto Twoim zdaniem wygra program MAFIA IRL 2?</span>
               </p>
             </div>
           </div>
         </div>
         <div id="wez-udzial" className="formSection">
+          <img src="/rekrr.png" alt="Rekrutacja" />
+
+          <div className="form-container">
+            <div className={checkLoading ? 'codechecker codechecking': 'codechecker'}>
+              <p>{codeMessage ? 'Sprawdzam kod...': ''}
+              {validCode && !invalidCode && !codeMessage ? 'Kod prawidłowy' : ''}
+              {invalidCode && !validCode && !codeMessage ? 'Kod nieprawidłowy' : ''}</p>
+              <p>{invalidCode && !validCode && !codeMessage ? 'Spróbuj ponownie' : ''}</p>
+
+           
+            </div>
+
+            <div className={ageAlert ? 'codechecker codechecking': 'codechecker'}>
+              {/* <p>{codeMessage ? 'Sprawdzam kod...': ''}
+              {validCode && !invalidCode && !codeMessage ? 'Kod prawidłowy' : ''}
+              {invalidCode && !validCode && !codeMessage ? 'Kod nieprawidłowy' : ''}</p>
+              <p>{invalidCode && !validCode && !codeMessage ? 'Spróbuj ponownie' : ''}</p> */}
+<p>Aby wziąć udział w losowaniu musisz mieć minimum 16 lat.</p>
+           
+            </div>
+            <div className={showConfirm ? 'confirmSlide show': 'confirmSlide'}>
+            <img 
+              className={`maflogoconfirm ${showConfirm ? 'logoslideconfirm' : ''}`} 
+              src='/mafia_stamp.png' alt='Żabka' />
+              <h2
+              className={`confirmtext ${showConfirm ? 'showconfirmtext' : ''}`} 
+              >Twoje zgłoszenie zostało przyjęte</h2>
+            </div>
+  <form className="form" ref={offerForm} onSubmit={handleSubmit}>
+    <div className="form-group">
+      <input type="text" id="name" name="name" className="form-field" placeholder=" " required />
+      <label htmlFor="firstName" className="label-as-placeholder">IMIĘ</label>
+    </div>
+    <div className="form-group">
+      <input type="email" id="email" name="email" className="form-field" placeholder=" " required />
+      <label htmlFor="email" className="label-as-placeholder">E-MAIL</label>
+    </div>
+    <div className="form-group">
+      <input type="text" id="phone" name="phone" className="form-field" placeholder=" " required />
+      <label htmlFor="phone" className="label-as-placeholder">TELEFON</label></div>
+      <div className="form-group">
+        <input
+          type="date"
+          id="birthDate"
+          name="age"
+          className="form-field"
+          placeholder=" "
+          value={birthDate}
+          onChange={handleDateChange}
+          required
+        />
+        <label htmlFor="birthDate" className="label-as-placeholder">DATA URODZENIA</label>
+      </div>
+    <div className="form-group">
+      <input 
+      onChange={e => {
+        
+        
+        if (e.target.value.length === 8) {
+          
+       
+          setCheckLoading(true)
+          setCodeMessage(true)
+          setCodeValue(e.target.value)
+
+
+          
+         
+        }
+      }}
+      type="text" id="code" name="code" className="form-field" placeholder=" " required />
+      <label htmlFor="code" className="label-as-placeholder">KOD ZAKUPU</label>
+    </div>
+    <div className="form-group">
+      <textarea id="message" name="message" className="form-field" placeholder=" " required></textarea>
+      <label htmlFor="message" name="message" className="label-as-placeholder">Kto Twoim zdaniem wygra program MAFIA IRL 2?</label>
+    </div>
+    <div className="fieldWrapper">
+                <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                />
+                <label className="terms"> Akceptuję <a href="/regulamin.pdf" target="_blank">regulamin</a> i wyrażam zgodę na przetwarzanie moich danych.</label>
+            </div>
+
+<div className="fieldWrapper">
+  <button
+    // disabled={formProcessing}
+    disabled={isSubmitDisabled}
+    className="submit sendform">
+
+    {formProcessing ? <span className="loading">Wysyłam</span> : <span>Dołącz do Mafii!</span>}
+  </button>
+  {/* {error && (
+    <div className="errorWrapper">
+      <span className="errorWrapper-inner">
+        Offer not added: {error}
+      </span>
+    </div>
+  )} */}
+</div>
+  </form>
+</div>
 
         </div>
         <div id="kontakt" className="contact">
