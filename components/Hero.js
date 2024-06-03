@@ -30,7 +30,7 @@ export default function Hero() {
               src='/mafia_stamp.png' alt='Żabka' />
             <div className={showFriz ? 'hero__content--text textslide': 'hero__content--text'}>
                 <img src="/slider_r.png" alt="Produkty" />
-                <button>Dołącz do Mafii!</button>
+                {/* <button>Dołącz do Mafii!</button> */}
             </div>
         </div>
     </div>

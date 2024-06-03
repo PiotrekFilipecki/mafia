@@ -662,6 +662,11 @@ main {
   }
 }
 
+::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+  transform: scale(1.5);
+}
+
 .codechecker {
   position: absolute;
   width: 100%;

@@ -269,32 +269,33 @@ const handleDecline = () => {
       {showCookieBox && <CookiePolicyBox onAccept={handleAccept} onDecline={handleDecline} />}
 
         <Hero />
-        <ParallaxText>Dołącz do mafii!</ParallaxText>
+        <ParallaxText>Ty wybierasz!</ParallaxText>
 
         <div id="nagrody" className="prizes">
           <h2 className="sectionHeader">Nagrody</h2>
           {/* <p className="sectionClaim">subtitle</p> */}
           <div className="prizes-grid">
-            <div className="prize">
-              <img src="/gold_1g.png" alt="Nagroda" />
-              <h3 className="prizeHeader">10 <span>x</span></h3>
-              <p className="prizeClaim">Sztabka złota 1g</p>
+          <div className="prize">
+            <img src="/ticket.png" alt="Nagroda" />
+              <h3 className="prizeHeader">2 <span>x</span></h3>
+              <p className="prizeClaim">POBYT NA BACKSTAGE’U PLANU ZDJĘCIOWEGO<br/>MAFIA IRL</p>
             </div>
             <div className="prize">
-            <img src="/gold_3g.png" alt="Nagroda" />
-              <h3 className="prizeHeader">3 <span>x</span></h3>
-              <p className="prizeClaim">Sztabka złota 3g</p>
+              <img src="/cards.png" alt="Nagroda" />
+              <h3 className="prizeHeader">50 <span>x</span></h3>
+              <p className="prizeClaim">GRA KARCIANA Z AUTOGRAFEM/AMI ZWYCIĘZCÓW PROGRAMU</p>
             </div>
             <div className="prize">
+            <img src="/ekipwhite.png" alt="Nagroda" />
+              <h3 className="prizeHeader">100 <span>x</span></h3>
+              <p className="prizeClaim">KOD ZNIŻKOWY -50% NA ZAKUPY DO 200 PLN W SKLEPIE</p>
+            </div>
+            {/* <div className="prize">
             <img src="/gold_10g.png" alt="Nagroda" />
               <h3 className="prizeHeader">2 <span>x</span></h3>
               <p className="prizeClaim">Sztabka złota 10g</p>
-            </div>
-            <div className="prize">
-            <img src="/ticket.png" alt="Nagroda" />
-              <h3 className="prizeHeader">2 <span>x</span></h3>
-              <p className="prizeClaim">Udział na planie zdjęciowym Mafia IRL</p>
-            </div>
+            </div> */}
+
           </div>
         </div>
         <div id="zasady" className="rules">
@@ -305,7 +306,7 @@ const handleDecline = () => {
               <img src="/produkty.png" alt="Zasada" />
               <span className='number'>01</span>
               <p className="ruleClaim">
-              KUP 2 DOWOLNE PRODUKTY RUSH / noRUSH W ŻABCE
+              KUP 2 PRODUKTY noRUSH MAFIA CYTRYNA RÓŻA W ŻABCE
               </p>
             </div>
             <div className="rule">
@@ -319,13 +320,13 @@ const handleDecline = () => {
               <img src="/rekrut.png" alt="Zasada" />
               <span className='number'>03</span>
               <p className="ruleClaim">
-              ZAREJESTRUJ (WPISZ) KOD I ODPOWIEDZ NA PYTANIE <br/><span>Kto Twoim zdaniem wygra program MAFIA IRL 2?</span>
+              ZAREJESTRUJ (WPISZ) KOD I ODPOWIEDZ NA PYTANIE <br/><span>Kto był najlepszym Uczestnikiem programu MAFIA IRL 2 i dlaczego?</span>
               </p>
             </div>
           </div>
         </div>
         <div id="wez-udzial" className="formSection">
-          <img src="/rekrr.png" alt="Rekrutacja" />
+          {/* <img src="/rekrr.png" alt="Rekrutacja" /> */}
 
           <div className="form-container">
             <div className={checkLoading ? 'codechecker codechecking': 'codechecker'}>
@@ -396,11 +397,11 @@ const handleDecline = () => {
         }
       }}
       type="text" id="code" name="code" className="form-field" placeholder=" " required />
-      <label htmlFor="code" className="label-as-placeholder">KOD ZAKUPU</label>
+      <label htmlFor="code" className="label-as-placeholder">KOD Z APLIKACJI</label>
     </div>
     <div className="form-group">
       <textarea id="message" name="message" className="form-field" placeholder=" " required></textarea>
-      <label htmlFor="message" name="message" className="label-as-placeholder">Kto Twoim zdaniem wygra program MAFIA IRL 2?</label>
+      <label htmlFor="message" name="message" className="label-as-placeholder">Kto był najlepszym Uczestnikiem programu MAFIA IRL 2 i dlaczego?</label>
     </div>
     <div className="fieldWrapper">
                 <input
@@ -417,7 +418,7 @@ const handleDecline = () => {
     disabled={isSubmitDisabled}
     className="submit sendform">
 
-    {formProcessing ? <span className="loading">Wysyłam</span> : <span>Dołącz do Mafii!</span>}
+    {formProcessing ? <span className="loading">Wysyłam</span> : <span>TY WYBIERASZ!</span>}
   </button>
   {/* {error && (
     <div className="errorWrapper">
