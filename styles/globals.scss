@@ -410,7 +410,7 @@ main {
     justify-content: center;
 
     @media screen and (min-width:993px) {
-      width: 70%;
+      width: 90%;
     }
 
     .prize {
@@ -420,6 +420,12 @@ main {
       justify-content: flex-start;
       align-items: center;
       margin-bottom: 6rem;
+
+      &.prize1 {
+        img {
+          width: 54.5%;
+        }
+      }
       
 
       @media screen and (min-width:993px) {
@@ -473,6 +479,12 @@ main {
       justify-content: flex-start;
       align-items: center;
       margin-bottom: 4rem;
+
+      &.rule1 {
+        img {
+          width: 46%;
+        }
+      }
       
 
       @media screen and (min-width:993px) {

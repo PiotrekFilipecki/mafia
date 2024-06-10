@@ -275,13 +275,13 @@ const handleDecline = () => {
           <h2 className="sectionHeader">Nagrody</h2>
           {/* <p className="sectionClaim">subtitle</p> */}
           <div className="prizes-grid">
-          <div className="prize">
+          <div className="prize prize1">
             <img src="/ticket.png" alt="Nagroda" />
               <h3 className="prizeHeader">2 <span>x</span></h3>
               <p className="prizeClaim">POBYT NA BACKSTAGE’U PLANU ZDJĘCIOWEGO<br/>MAFIA IRL</p>
             </div>
             <div className="prize">
-              <img src="/cards.png" alt="Nagroda" />
+              <img src="/prz.png" alt="Nagroda" />
               <h3 className="prizeHeader">50 <span>x</span></h3>
               <p className="prizeClaim">GRA KARCIANA Z AUTOGRAFEM/AMI ZWYCIĘZCÓW PROGRAMU</p>
             </div>
@@ -302,8 +302,8 @@ const handleDecline = () => {
           <h2 className="sectionHeader">Zasady</h2>
           {/* <p className="sectionClaim">subtitle</p> */}
           <div className="rules-grid">
-            <div className="rule">
-              <img src="/produkty.png" alt="Zasada" />
+            <div className="rule rule1">
+              <img src="/buttl.png" alt="Zasada" />
               <span className='number'>01</span>
               <p className="ruleClaim">
               KUP 2 PRODUKTY noRUSH MAFIA CYTRYNA RÓŻA W ŻABCE
