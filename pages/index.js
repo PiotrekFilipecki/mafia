@@ -95,13 +95,26 @@ useEffect(() => {
   if (cookieConsent === null) {
     setShowCookieBox(true);
   }
+  // fetch('/api/check')
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setData(data)
+  //     setLoading(false)
+  //   })
+}, [])
+
+useEffect(() => {
+  // const cookieConsent = localStorage.getItem('cookieConsent');
+  // if (cookieConsent === null) {
+  //   setShowCookieBox(true);
+  // }
   fetch('/api/check')
     .then((res) => res.json())
     .then((data) => {
       setData(data)
       setLoading(false)
     })
-}, [])
+}, [codeValue])
 
 // useEffect(() => {
 //   {data && data.find((item) => {
