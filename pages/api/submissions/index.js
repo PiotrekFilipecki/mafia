@@ -1,15 +1,10 @@
-import getSubmissions from '../../../services/getSubmissions';
+
 import createOffer from '../../../services/create'
 
 
 export default async (req, res) => {
   switch (req.method) {
-    case 'GET': {
-      const submissions = await getSubmissions(4);
-      res.status(200).json(submissions);
 
-      break;
-    }
     case 'POST': {
       try {
 
