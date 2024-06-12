@@ -294,7 +294,7 @@ const handleDecline = () => {
             <img src="/gold_10g.png" alt="Nagroda" />
               <h3 className="prizeHeader">2 <span>x</span></h3>
               <p className="prizeClaim">Sztabka złota 10g</p>
-            </div> */}
+            </div> */}  
 
           </div>
         </div>
